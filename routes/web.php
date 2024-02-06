@@ -15,16 +15,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $client = \Elastic\Elasticsearch\ClientBuilder::create()
-        ->setHosts(['https://localhost:9200'])
-        ->setBasicAuthentication(env('ELASTICSEARCH_USER'), env('ELASTICSEARCH_PASS'))
-        ->setSSLVerification(false)
-        ->build();
-
-    $params = [
-        'index' => 'index1',
-        'body' => ['name' => 'hasan', 'age' => 22]
-    ];
-    $response = $client->index($params);
-    dd($response);
+//    $client = \Elastic\Elasticsearch\ClientBuilder::create()
+//        ->setHosts(['https://localhost:9200'])
+//        ->setBasicAuthentication(env('ELASTICSEARCH_USER'), env('ELASTICSEARCH_PASS'))
+//        ->setSSLVerification(false)
+//        ->build();
+//
+//    $params = [
+//        'index' => 'index1',
+//        'body' => ['name' => 'hasan', 'age' => 22]
+//    ];
+//    $response = $client->index($params);
+//    dd($response);
 });
+
+Route::resource('movies', \App\Http\Controllers\MovieController::class);
+Route::get('test', [\App\Http\Controllers\MovieController::class, 'create']);
