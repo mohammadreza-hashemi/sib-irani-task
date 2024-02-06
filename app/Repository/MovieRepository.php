@@ -27,12 +27,12 @@ class MovieRepository implements MovieRepositoryInterface
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return \Illuminate\Http\JsonResponse|mixed
      */
-    public function show(int $id)
+    public function show(string $id)
     {
-        $movie = Movie::find($id);
+        $movie = DB::table('movies')->where('id', $id)->get();
         return response()->json($movie, 200);
     }
 
@@ -53,7 +53,7 @@ class MovieRepository implements MovieRepositoryInterface
      */
     public function destroy(int $id)
     {
-       DB::table('movies')->delete($id);
+        DB::table('movies')->delete($id);
     }
 
 }

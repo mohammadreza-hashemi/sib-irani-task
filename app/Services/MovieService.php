@@ -29,10 +29,10 @@ class MovieService extends BaseService implements MovieServiceInterface
     }
 
     /**
-     * @param int $id
-     * @return void
+     * @param string $id
+     * @return mixed
      */
-    public function show(int $id)
+    public function show(string $id)
     {
         return $this->movieRepository->show($id);
     }

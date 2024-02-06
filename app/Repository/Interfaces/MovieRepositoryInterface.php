@@ -11,10 +11,10 @@ interface MovieRepositoryInterface
     public function store(array $data);
 
     /**
-     * @param int $id
+     * @param string $id
      * @return mixed
      */
-    public function show(int $id);
+    public function show(string $id);
 
     /**
      * @param array $data

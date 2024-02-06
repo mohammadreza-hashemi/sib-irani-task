@@ -49,10 +49,10 @@ class MovieController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param $id
      * @return mixed
      */
-    public function show(int $id)
+    public function show(string $id)
     {
         return $this->moveiService->show($id);
     }

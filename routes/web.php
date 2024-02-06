@@ -13,21 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
-//    $client = \Elastic\Elasticsearch\ClientBuilder::create()
-//        ->setHosts(['https://localhost:9200'])
-//        ->setBasicAuthentication(env('ELASTICSEARCH_USER'), env('ELASTICSEARCH_PASS'))
-//        ->setSSLVerification(false)
-//        ->build();
-//
-//    $params = [
-//        'index' => 'index1',
-//        'body' => ['name' => 'hasan', 'age' => 22]
-//    ];
-//    $response = $client->index($params);
-//    dd($response);
-});
-
+/*
+ * this is movie crud  routes with microservice and repository design pattern
+ */
 Route::resource('movies', \App\Http\Controllers\MovieController::class);
-Route::get('test', [\App\Http\Controllers\MovieController::class, 'create']);
+/*
+ * this route insert movies to elasticsearch database
+ */
+Route::get('elastic/store', [\App\Http\Controllers\ElasticSearchController::class, 'store']);
+/*
+* this route search in elastic database after redis cache checking
+*/
+Route::get('elastic/search/{keyword}', [\App\Http\Controllers\ElasticSearchController::class, 'search']);
